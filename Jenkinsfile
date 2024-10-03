@@ -5,17 +5,18 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout the repository
-                git url: 'https://github.com/TTFHW/jenkins_pipeline_java_maven.git'
+                git url: 'https://github.com/Jigyansu1234/jenkins_pipeline_java_maven.git'
             }
         }
 
         stage('Build') {
             steps {
                 // Get the Maven tool configured globally as 'M3'
-                def mvnHome = tool 'M3'
-
-                // Run the Maven build
-                sh "${mvnHome}/bin/mvn -Dmaven.test.failure.ignore clean package"
+                script {
+                    def mvnHome = tool name: 'M3'
+                    // Run the Maven build using the Maven tool path
+                    sh "${mvnHome}/bin/mvn -Dmaven.test.failure.ignore clean package"
+                }
             }
         }
 
