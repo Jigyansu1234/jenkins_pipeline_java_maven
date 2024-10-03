@@ -13,7 +13,8 @@ pipeline {
             steps {
                 // Get the Maven tool configured globally as 'M3'
                 script {
-                    def mvnHome = tool name: 'M3'
+                    // Make sure 'M3' is correctly configured in Jenkins
+                    def mvnHome = tool name: 'M3' // Change 'M3' if your Maven installation has a different name
                     // Run the Maven build using the Maven tool path
                     sh "${mvnHome}/bin/mvn -Dmaven.test.failure.ignore clean package"
                 }
@@ -28,3 +29,4 @@ pipeline {
         }
     }
 }
+
